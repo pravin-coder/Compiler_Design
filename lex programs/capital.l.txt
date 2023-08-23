@@ -1,0 +1,24 @@
+
+%{
+int count=0;
+%}
+
+%%
+[a-z] {putchar(toupper(yytext[0]));}
+%%
+
+int yywrap(){
+return 1;
+}
+
+int main(){
+char file[10];
+FILE *f;
+printf("enter the file name:");
+scanf("%s",file);
+f=fopen(file,"r");
+yyin=f;
+yylex();
+fclose(yyin);
+return 0;
+}

@@ -1,0 +1,24 @@
+dig [0-9]
+%{
+int c=0;
+%}
+
+%%
+{dig}+ { c++ ;printf("%s ",yytext);}
+%%
+
+int yywrap(void){
+return 1;
+}
+
+int main(void){
+char file[10];
+FILE *f;
+printf(" filename: ");
+scanf("%s",file);
+f=fopen(file,"r");
+yyin = f;
+yylex();
+printf("no of const:%d",c);
+fclose(yyin);
+}

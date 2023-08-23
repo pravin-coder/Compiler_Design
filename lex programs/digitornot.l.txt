@@ -1,0 +1,23 @@
+%{
+int nline=1;
+%}
+
+%%
+[0-9] {printf("it is a digit");}
+%%
+
+int yywrap(void){
+return 1;
+}
+
+int main(void){
+char file[10];
+FILE *f;
+printf("enter the file name:");
+scanf("%s",file);
+f=fopen(file,"r");
+yyin=f;
+yylex();
+fclose(yyin);
+return 0;
+} 

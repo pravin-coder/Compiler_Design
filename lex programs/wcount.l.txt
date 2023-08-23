@@ -1,0 +1,28 @@
+alpha[a-zA-Z]
+%{
+int charCount = 0;
+int wordCount = 0;
+int lineCount = 0;
+%}
+
+%%
+{alpha}+   { wordCount++; charCount += yyleng; }
+\n          { lineCount++; charCount++; }
+.           { charCount++; }
+%%
+int yywrap(void){
+return 1;
+}
+int main() {
+    FILE *f;
+    char file[10];
+    printf("file name:");
+    scanf("%s",file);
+    f=fopen(file,"r");
+    yyin = f;
+    yylex();
+    printf("Character count: %d\n", charCount);
+    printf("Word count: %d\n", wordCount);
+    printf("Line count: %d\n", lineCount);
+    fclose(yyin);
+}

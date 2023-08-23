@@ -1,0 +1,25 @@
+vov [AEIOUaeiou]
+%{
+int nline=1;
+%}
+
+%%
+{vov} {printf("\nvowels");}
+[a-zA-Z] {printf("\nconsonants");}
+%%
+
+int yywrap(void){
+return 1;
+}
+
+int main(void){
+char file[10];
+FILE *f;
+printf("enter the file name:");
+scanf("%s",file);
+f=fopen(file,"r");
+yyin=f;
+yylex();
+fclose(yyin);
+return 0;
+} 

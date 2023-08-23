@@ -1,0 +1,22 @@
+%{
+%}
+
+%%
+"https://"  {printf("the url is valid");}
+%%
+
+int yywrap(void){
+return 1;
+}
+
+int main(void){
+char file[10];
+FILE *f;
+printf("\nenter the file name:");
+scanf("%s",file);
+f=fopen(file,"r");
+yyin=f;
+yylex();
+fclose(yyin);
+return 0;
+}

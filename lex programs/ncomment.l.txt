@@ -1,0 +1,25 @@
+%{
+int nc=0;
+%}
+
+%%
+"//"   {  nc++; }
+%%
+
+int yywrap()
+{
+return 1;
+}
+
+int main(void){
+char file[10];
+FILE *f;
+printf("enter the file name:");
+scanf("%s",file);
+f=fopen(file,"r");
+yyin=f;
+yylex();
+printf("no of comment lines:%d",nc);
+fclose(yyin);
+return 0;
+}

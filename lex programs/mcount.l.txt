@@ -1,0 +1,30 @@
+
+%{
+int count=0;
+%}
+
+%%
+[0-9] {count++;}
+%%
+
+int yywrap(){
+return 1;
+}
+
+int main(){
+char file[10];
+FILE *f;
+printf("enter the file name:");
+scanf("%s",file);
+f=fopen(file,"r");
+yyin=f;
+yylex();
+if(count==10){
+ printf("valid mobile number");
+}
+else{
+printf("invalid");
+}
+fclose(yyin);
+return 0;
+}

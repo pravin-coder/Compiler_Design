@@ -1,0 +1,27 @@
+%{
+int pos=0;
+int neg=0;
+%}
+
+%%
+"+"  {pos++;}
+"-"   {neg++;}
+%%
+
+int yywrap(void){
+return 1;
+}
+
+int main(void){
+char file[10];
+FILE *f;
+printf("\nenter the file name:");
+scanf("%s",file);
+f=fopen(file,"r");
+yyin=f;
+yylex();
+printf("\nno of positive numbers:%d",pos);
+printf("\nno of negative numbers:%d",neg);
+fclose(yyin);
+return 0;
+}

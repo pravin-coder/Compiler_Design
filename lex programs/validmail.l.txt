@@ -1,0 +1,21 @@
+%{
+%}
+%%
+@gmail.com { printf("the email id is valid");} 
+%%
+
+int yywrap(void){
+return 1;
+}
+
+int main(void){
+char file[30];
+FILE *f;
+printf("enter the file name:");
+scanf("%s",file);
+f=fopen(file,"r");
+yyin=f;
+yylex();
+fclose(yyin);
+return 0;
+}
